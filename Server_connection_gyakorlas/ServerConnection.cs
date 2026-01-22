@@ -55,7 +55,7 @@ namespace Server_connection_gyakorlas
             return PlaneList;
         }
 
-        public async Task<Message> CreatePilot(int LicenseID, string nev, DateOnly SzuletesiDatum, int RepuloOrak)
+        public async Task<Message> CreatePilot(int LicenseID, string nev, DateTime SzuletesiDatum, int RepuloOrak)
         {
             Message msg = new Message();
             string url = baseUrl + "/createPilot";
@@ -81,7 +81,7 @@ namespace Server_connection_gyakorlas
             return msg;
         }
 
-        public async Task<Message> CreatePlane(string Tipus, int RepuloOrak, DateOnly GyartasiDatum, int SzallithaoSuly)
+        public async Task<Message> CreatePlane(string Tipus, int RepuloOrak, DateTime GyartasiDatum, int SzallithaoSuly)
         {
             Message msg = new Message();
             string url = baseUrl + "/createPlane";
@@ -167,7 +167,7 @@ namespace Server_connection_gyakorlas
             return msg;
         }
 
-        public async Task<Planes>FindPlane(string typeValue, int hourFrom, int hourTo, int weightFrom, int weightTo, DateOnly dateFrom, DateOnly dateTo)
+        public async Task<Planes>FindPlane(string typeValue, int hourFrom, int hourTo, int weightFrom, int weightTo, DateTime dateFrom, DateTime dateTo)
         {
             Planes Plane = new Planes();
             string url = baseUrl + "/planeFind";
