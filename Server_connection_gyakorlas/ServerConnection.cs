@@ -63,7 +63,7 @@ namespace Server_connection_gyakorlas
             {
                 var JsonData = new
                 {
-                    LicenseID = LicenseID,
+                    licenseID = LicenseID,
                     nev = nev,
                     SzuletesiDatum = SzuletesiDatum,
                     RepuloOrak = RepuloOrak
@@ -167,9 +167,9 @@ namespace Server_connection_gyakorlas
             return msg;
         }
 
-        public async Task<Planes>FindPlane(string typeValue, int hourFrom, int hourTo, int weightFrom, int weightTo, DateTime dateFrom, DateTime dateTo)
+        public async Task<List<Planes>> FindPlane(string typeValue, int hourFrom, int hourTo, int weightFrom, int weightTo, DateTime dateFrom, DateTime dateTo)
         {
-            Planes Plane = new Planes();
+            List<Planes> Plane = new List<Planes>();
             string url = baseUrl + "/planeFind";
             try
             {
@@ -187,7 +187,7 @@ namespace Server_connection_gyakorlas
                 HttpContent content = new StringContent(JsonString, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await _client.PostAsync(url, content);
                 response.EnsureSuccessStatusCode();
-                Plane = JsonSerializer.Deserialize<Planes>(await response.Content.ReadAsStringAsync());
+                Plane = JsonSerializer.Deserialize<List<Planes>>(await response.Content.ReadAsStringAsync());
             }
             catch (Exception e)
             {
